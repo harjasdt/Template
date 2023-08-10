@@ -29,6 +29,14 @@ export default function Login() {
       .then((response) => {
         console.log(response.data.message)
         localStorage.setItem("userData", JSON.stringify(response.data.message));
+        axios
+        .post("http://127.0.0.1:8000/api/stock-data/",{
+          email:formData.email,
+        })
+        .then((response)=>{
+          localStorage.setItem("stockData", JSON.stringify(response.data.message));
+          console.log(response.data.message);
+        });
         navigate("/profile");
       })
       .catch((error)=>{
