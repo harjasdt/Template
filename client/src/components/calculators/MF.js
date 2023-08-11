@@ -56,7 +56,7 @@ function MF() {
             />
           </div>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md w-full hover:bg-blue-600"
+            className="bg-[#C06014] text-white px-4 py-2 rounded-md w-full hover:bg-[#536162]"
             onClick={calculateMutualFunds}
           >
             Calculate

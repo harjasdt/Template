@@ -7,7 +7,7 @@ export default function Profile() {
   const storedData = JSON.parse(localStorage.getItem("userData"));
   return (
     <>
-     {storedData.flag?<div> <Nav />
+     {/* {storedData.flag?<div> <Nav />
       <div className="flex pt-20 items-center justify-center section">
         <div className="max-w-md w-full p-6 rounded-lg shadow-md profileBg">
           <div className="flex items-center justify-center">
@@ -19,7 +19,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <Progress /></div>:<p>Login Required</p>}
+      <Progress /></div>:<p>Login Required</p>} */}
     </>
   );
 }

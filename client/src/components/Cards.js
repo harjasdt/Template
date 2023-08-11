@@ -21,11 +21,11 @@ export default function Services() {
       ];
   return (
     <>
-    <section className="py-10">
+    <section name="Articles" className="pt-[70px] py-10">
         <h1 className="text-4xl font-bold text-[#424642] font-sans from-neutral-500 text-center">OUR SERVICES</h1>
         <div className="flex justify-center">
         </div>
-        <div className="container mx-auto px-10 py-6">
+        <div className="container mx-auto pl-20 pr-20 py-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9">
         {cards.map((card, index) => (
           <div

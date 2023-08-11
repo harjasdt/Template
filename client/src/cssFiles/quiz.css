@@ -49,16 +49,17 @@
   border-radius: 16px;
   padding: 11px;
   margin-top: 15px;
+  margin-left:30px;
   cursor: pointer;
 }
 
 .quiz-container ul .selected-answer {
-  background: #a5bec2;
-  border: 1px solid #536162;
+  background: #fee7d5;
+  border: 1px solid #C06014;
 }
 
 .quiz-container button {
-  background:#536162;
+  background:#C06014;
   border-radius: 9px;
   font-size: 18px;
   color: #ffffff;

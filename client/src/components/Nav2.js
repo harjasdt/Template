@@ -14,7 +14,7 @@ export default function Nav2() {
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <a href="/" className="text-white font-bold text-lg">
-              TekMoney
+            Finesse360
             </a>
           </div>
 

@@ -6,47 +6,44 @@ export default function Footer() {
     <div class="mx-auto w-full max-w-screen-xl flex justify-center">
       <div class="grid grid-cols-2 gap-16 px-4 py-6 lg:py-8 md:grid-cols-4">
         <div>
-            <h2 class="mb-6 text-sm font-bold uppercase text-white">Company</h2>
-            <ul class=" text-white font-small">
-                <li class="mb-4">
+            <h2 class="mb-6 text-lg font-bold uppercase text-white">Company</h2>
+            <ul class=" text-white font-small tracking-wider">
+                <li class="mb-4 text-sm">
                     <a href="/" class=" hover:text-[#C06014]">About</a>
                 </li>
-                <li class="mb-4">
-                    <a href="/" class="hover:text-[#C06014]">Careers</a>
-                </li>
-                <li class="mb-4">
+                <li class="mb-4 text-sm">
                     <a href="/" class="hover:text-[#C06014]">Brand Center</a>
                 </li>
-                <li class="mb-4">
+                <li class="text-sm">
                     <a href="/" class="hover:text-[#C06014]">Blog</a>
                 </li>
             </ul>
         </div>
         <div>
-            <h2 class="mb-6 text-sm font-bold  uppercase  text-white">Contact</h2>
-            <ul class=" text-white font-small">
-                <li class="mb-4">
+            <h2 class="mb-6 text-lg font-bold  uppercase  text-white">Contact</h2>
+            <ul class=" text-white font-small tracking-wider">
+                <li class="mb-4 text-sm">
                     <a href="/" class="hover:text-[#C06014]">email@gmail.com</a>
                 </li>
-                <li class="mb-4">
+                <li class="mb-4 text-sm">
                     <p class="hover:text-[#C06014]">9999999999</p>
                 </li>
-                <li class='hover:text-[#C06014]'>
+                <li class='hover:text-[#C06014] text-sm'>
                     <p class="hover:">TIET</p>
                     <p class="hover:underline">Patiala</p>
                 </li>
             </ul>
         </div>
         <div>
-            <h2 class="mb-6 text-sm font-bold  uppercase  text-white">Legal</h2>
-            <ul class=" text-white font-small">
-                <li class="mb-4">
+            <h2 class="mb-6 text-lg font-bold  uppercase  text-white">Legal</h2>
+            <ul class=" text-white font-small tracking-wider">
+                <li class="mb-4 text-sm">
                     <a href="/" class="hover:text-[#C06014]">Privacy Policy</a>
                 </li>
-                <li class="mb-4">
+                <li class="mb-4 text-sm">
                     <a href="/" class="hover:text-[#C06014]">Licensing</a>
                 </li>
-                <li class="mb-4">
+                <li class="text-sm">
                     <a href="/" class="hover:text-[#C06014]">Terms &amp; Conditions</a>
                 </li>
             </ul>

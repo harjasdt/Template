@@ -1,6 +1,6 @@
 export const quiz = {
     topic: 'Check Your Knowlwdge',
-    totalQuestions: 14,
+    totalQuestions: 20,
     questions: [
       { 
         question: 'What is the first step in creating a budget?',
