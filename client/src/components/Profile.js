@@ -1,4 +1,5 @@
-import React from "react";
+import {React,useEffect} from "react";
+import axios from "axios"
 import Nav from "./Nav";
 import "../cssFiles/profile.css";
 import pic from "../assets/LoginImage.png";

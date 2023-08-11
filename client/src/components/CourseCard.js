@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
+import axios from "axios"
 export default function CourseCard() {
+  const storedData = JSON.parse(localStorage.getItem("userData"));
   const courses = [
     {
       title: 'Beginner',
@@ -71,6 +72,13 @@ export default function CourseCard() {
 
   const handleMarkCompleted = (courseTitle, cardTitle) => {
     console.log(`Mark card completed: ${courseTitle}, Card: ${cardTitle}`);
+    axios
+    .post("http://127.0.0.1:8000/api/progress-update/",{
+      email:storedData.email,
+    })
+    .then((response)=>{
+      console.log(response);
+    })
   };
 
   return (

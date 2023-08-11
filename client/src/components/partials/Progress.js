@@ -1,8 +1,27 @@
-import React from "react";
-
+import React, { useState, useEffect } from 'react';
+import axios from "axios"
 export default function Progress({}) {
+  const[count,setCount] = useState()
   const storedData = JSON.parse(localStorage.getItem("userData"));
-  let count = storedData.progress;
+  // let count = storedData.progress;
+  useEffect(() => {
+    const fetchStoredData = async () => {
+      try {
+        const response = await  axios
+        .post("http://127.0.0.1:8000/api/alldata/",{
+          email:storedData.email,
+        })
+        .then((response)=>{
+          setCount(response.data.message.progress)
+        });  
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchStoredData();
+    const interval = setInterval(fetchStoredData, 1000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <div className="progressBar mt-5">
