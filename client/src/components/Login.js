@@ -35,7 +35,7 @@ export default function Login() {
         })
         .then((response)=>{
           localStorage.setItem("stockData", JSON.stringify(response.data.message));
-          console.log(response.data.message);
+          console.log();
         });
         navigate("/profile");
       })

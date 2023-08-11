@@ -1,23 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import Equity from "../assets/equity.csv";
 import Papa from 'papaparse';
-
+import axios from "axios"
 export default function Stock() {
-  const [investedMoney, setInvestedMoney] = useState(0);
-  const [currentMoney, setCurrentMoney] = useState(0);
+    // const stockdata = JSON.parse(localStorage.getItem("stockData"));
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+  const [investedMoney, setInvestedMoney] = useState(storedData.investedcash);
+  const [currentMoney, setCurrentMoney] = useState(storedData.avalcash);
+  const [profit, setProfit] = useState(storedData.profit);
   const [stocks, setStocks] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [stockCode, setStockCode] = useState('');
   const [stockQuantity, setStockQuantity] = useState(0);
   const [stockData, setStockData] = useState([]);
+  const [stockFormData,setStockFormData] = useState();
   const [stockName, setStockName] = useState('');
+
+  useEffect(() => {
+    const fetchStockData = async () => {
+      try {
+        const response = await  axios
+        .post("http://127.0.0.1:8000/api/stock-data/",{
+          email:storedData.email,
+        })
+        .then((response)=>{
+            console.log(storedData);
+          localStorage.setItem("stockData", JSON.stringify(response.data.message));
+          const stockdata = JSON.parse(localStorage.getItem("stockData"));
+          console.log(stockdata);
+          setStockData(stockdata);
+        });  
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
+    };
+    fetchStockData();
+    const interval = setInterval(fetchStockData, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     Papa.parse(Equity, {
       download: true,
       header: true,
       complete: function (result) {
-        setStockData(result.data);
+        setStockFormData(result.data);
       },
     });
   }, []);
@@ -32,26 +59,18 @@ export default function Stock() {
     }
   };
 
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    axios
+    .post("http://127.0.0.1:8000/api/add-stock/",{
+        "email":storedData.email,
+        "stockcode":stockCode,
+        "stockname":stockName,
+        "quant":stockQuantity,
+        "ltp":1,
 
-    // Calculate stock average and ltc
-    const stockAverage = 10; // calculate stock average based on your logic;
-    const stockLTC = 10; // calculate stock ltc based on your logic;
-
-    const newStock = {
-      stockCode,
-      stockName,
-      stockQuantity,
-      stockAverage,
-      stockLTC,
-    };
-
-    setStocks([...stocks, newStock]);
-    setIsFormOpen(false);
-    setStockCode('');
-    setStockQuantity(0);
-    setStockName('');
+    })
   };
 
   return (
@@ -59,6 +78,7 @@ export default function Stock() {
       <div className="mb-4 space-x-4 flex items-center">
         <p className="text-xl text-[#536162] font-bold">Invested Money: {investedMoney}</p>
         <p className="text-xl text-[#536162] font-bold">Current Money: {currentMoney}</p>
+        <p className="text-xl text-[#536162] font-bold">Profit: {profit}</p>
         <button
           className="bg-[#424642] text-white px-4 py-2 rounded hover:bg-[#C06014]"
           onClick={() => setIsFormOpen(true)}
@@ -76,7 +96,7 @@ export default function Stock() {
               className="p-2 border rounded w-full"
             >
               <option value="" >Select Stock Code</option>
-              {stockData.map((stock, index) => (
+              {stockFormData.map((stock, index) => (
                 <option key={index} value={stock.SYMBOL}>
                   {stock.SYMBOL}
                 </option>
@@ -111,19 +131,21 @@ export default function Stock() {
           <tr className='bg-[#424642]'>
             <th className="text-white px-4 py-2">Stock Code</th>
             <th className="text-white px-4 py-2">Stock Name</th>
-            <th className="text-white px-4 py-2">Stock Quantity</th>
             <th className="text-white px-4 py-2">Stock Average</th>
+            <th className="text-white px-4 py-2">Stock Quantity</th>
+            <th className="text-white px-4 py-2">Stock Value</th>
             <th className="text-white px-4 py-2">Stock LTC</th>
           </tr>
         </thead>
         <tbody>
-          {stocks.map((stock, index) => (
+          {stockData.map((stock, index) => (
             <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
-              <td className="px-4 py-2">{stock.stockCode}</td>
-              <td className="px-4 py-2">{stock.stockName}</td>
-              <td className="px-4 py-2">{stock.stockQuantity}</td>
-              <td className="px-4 py-2">{stock.stockAverage}</td>
-              <td className="px-4 py-2">{stock.stockLTC}</td>
+              <td className="px-4 py-2">{stock.stockcode}</td>
+              <td className="px-4 py-2">{stock.stockname}</td>
+              <td className="px-4 py-2">{stock.avg}</td>
+              <td className="px-4 py-2">{stock.quant}</td>
+              <td className="px-4 py-2">{stock.value}</td>
+              <td className="px-4 py-2">NA</td>
             </tr>
           ))}
         </tbody>
